@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Learn/Summer2023/PRN213/Authorization-Identity-ASP.NET-Example/Core3.1/Views/Authorization/PolicyBase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxQb2xpY3lCYXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Learn/Summer2023/PRN213/Authorization-Identity-ASP.NET-Example/Core3.1/Views/Authorization/RoleBase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxSb2xlQmFzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

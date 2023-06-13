@@ -17,8 +17,14 @@ namespace Core3._1.Controllers
             return View();
         }
 
-        [Authorize(Policy = "AdminOnly")]
+        [Authorize(Policy = "EmployeeOnly")]
         public IActionResult ClaimsBase()
+        {
+            return View();
+        }
+
+        [Authorize(Policy = "DevUser")]
+        public IActionResult PolicyBase()
         {
             return View();
         }

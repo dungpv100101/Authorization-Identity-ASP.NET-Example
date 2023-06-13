@@ -17,8 +17,15 @@ internal class Program
 
         builder.Services.AddAuthorization(options =>
         {
-            options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+            options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("Employee", "5", "6", "4"));
+            options.AddPolicy("DevUser",
+                    policy => policy.RequireAssertion(
+                        context => context.User.HasClaim(claim => claim.Type == "Dev")
+                            || context.User.HasClaim(claim => claim.Type == "IT")
+                            || context.User.IsInRole("User")));
         });
+
+
 
         var app = builder.Build();
 
