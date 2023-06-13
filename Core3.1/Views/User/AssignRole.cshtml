@@ -1,0 +1,39 @@
+﻿@model Core3._1.ViewModel.AssignRoleViewModel
+
+<h2>Assign Role to User</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="userId">User:</label>
+        <select id="userId" name="UserId" class="form-control" required>
+            <option value="">Select User</option>
+            @foreach (var user in Model.Users)
+            {
+                <option value="@user.Id">@user.UserName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="roleId">Role:</label>
+        <select id="roleId" name="RoleId" class="form-control" required>
+            <option value="">Select Role</option>
+            @foreach (var role in Model.Roles)
+            {
+                <option value="@role.Id">@role.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Assign Role</button>
+</form>

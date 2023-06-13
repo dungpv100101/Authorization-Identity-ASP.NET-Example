@@ -1,0 +1,37 @@
+﻿@model Core3._1.ViewModel.AddClaimViewModel
+
+<h2>Add Claim to User</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="userId">User:</label>
+        <select id="userId" name="UserId" class="form-control" required>
+            <option value="">Select User</option>
+            @foreach (var user in Model.Users)
+            {
+                <option value="@user.Id">@user.UserName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="claimType">Claim Type:</label>
+        <input type="text" id="claimType" name="ClaimType" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="claimValue">Claim Value:</label>
+        <input type="text" id="claimValue" name="ClaimValue" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Claim</button>
+</form>
