@@ -1,0 +1,44 @@
+﻿@model Core3._1.ViewModel.ViewRolesAndClaimsViewModel
+
+<h2>Roles and Claims for User: @Model.UserName</h2>
+
+<p><strong>Roles:</strong></p>
+@if (Model.Roles.Any())
+{
+    <ul>
+        @foreach (var role in Model.Roles)
+        {
+            <li>@role</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No roles assigned to this user.</p>
+}
+
+<p><strong>Claims:</strong></p>
+@if (Model.Claims.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Claim Type</th>
+                <th>Claim Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model.Claims)
+            {
+                <tr>
+                    <td>@claim.Type</td>
+                    <td>@claim.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No claims found for this user.</p>
+}
