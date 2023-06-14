@@ -1,4 +1,7 @@
+using Core3._1.Authorization.Handler;
+using Core3._1.Authorization.Requirement;
 using Core3._1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,6 +29,19 @@ internal class Program
         });
 
 
+        builder.Services.AddSingleton<IAuthorizationHandler, IsAccountNotDisabledHandler>();
+        builder.Services.AddSingleton<IAuthorizationHandler, IsEmployeeHandler>();
+        builder.Services.AddSingleton<IAuthorizationHandler, IsVIPCustomerHandler>();
+
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("canManageProduct",
+                policyBuilder =>
+                    policyBuilder.AddRequirements(
+                        new IsAccountEnabledRequirement(),
+                        new IsAllowedToManageProductRequirement()
+                    ));
+        });
 
         var app = builder.Build();
 

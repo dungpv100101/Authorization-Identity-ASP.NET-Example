@@ -28,5 +28,11 @@ namespace Core3._1.Controllers
         {
             return View();
         }
+
+        [Authorize(Policy = "canManageProduct")]
+        public IActionResult PolicyRequirement()
+        {
+            return View();
+        }
     }
 }
