@@ -11,7 +11,7 @@ namespace Core3._1.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult RoleBase()
         {
             return View();

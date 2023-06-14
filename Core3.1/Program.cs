@@ -1,4 +1,4 @@
-using Core3._1.Authorization.Handler;
+﻿using Core3._1.Authorization.Handler;
 using Core3._1.Authorization.Requirement;
 using Core3._1.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -12,10 +12,20 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredLength = 6;
+        });
+
         // Add services to the container.
         builder.Services.AddControllersWithViews();
         string connectionString = builder.Configuration.GetConnectionString("default");
         builder.Services.AddDbContext<AppDBContext>(c => c.UseSqlServer(connectionString));
+
         builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDBContext>();
 
         builder.Services.AddAuthorization(options =>
