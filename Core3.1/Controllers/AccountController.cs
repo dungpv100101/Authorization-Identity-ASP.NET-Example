@@ -17,6 +17,7 @@ namespace Core3._1.Controllers
             _signInManager = signInManager;
         }
 
+        
         public IActionResult Register()
         {
             return View();

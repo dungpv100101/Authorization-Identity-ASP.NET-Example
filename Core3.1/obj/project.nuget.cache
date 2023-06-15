@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "a+dzvs5OxmIwncPGKaSRkS5SUL/4HApwbXuicSU9/HoYzQr1docYgGTB/QaUqYXfweu/xHlhSC8xoiMuomk9rA==",
+  "dgSpecHash": "lS4iM3B+3ycQczjdYj8W+Cj/kdfVOtH+QK5QLLgeyXDJia/iUjB7xUPyb+BtXkNfsaU+nI/2DR5AzxL5Q1pSgQ==",
   "success": true,
-  "projectFilePath": "D:\\Learn\\Summer2023\\PRN213\\Authorization-Identity-ASP.NET-Example\\Core3.1\\Core3.1.csproj",
+  "projectFilePath": "D:\\DH_FPT\\Summer2023\\PRN231\\Authorization-Identity-ASP.NET-Example\\Core3.1\\Core3.1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.0\\microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
