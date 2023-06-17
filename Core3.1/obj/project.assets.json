@@ -2187,11 +2187,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Learn\\Summer2023\\PRN213\\Authorization-Identity-ASP.NET-Example\\Core3.1\\Core3.1.csproj",
+      "projectUniqueName": "D:\\DH_FPT\\Summer2023\\PRN231\\Authorization-Identity-ASP.NET-Example\\Core3.1\\Core3.1.csproj",
       "projectName": "Core3.1",
-      "projectPath": "D:\\Learn\\Summer2023\\PRN213\\Authorization-Identity-ASP.NET-Example\\Core3.1\\Core3.1.csproj",
+      "projectPath": "D:\\DH_FPT\\Summer2023\\PRN231\\Authorization-Identity-ASP.NET-Example\\Core3.1\\Core3.1.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Learn\\Summer2023\\PRN213\\Authorization-Identity-ASP.NET-Example\\Core3.1\\obj\\",
+      "outputPath": "D:\\DH_FPT\\Summer2023\\PRN231\\Authorization-Identity-ASP.NET-Example\\Core3.1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2258,7 +2258,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

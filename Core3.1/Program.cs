@@ -1,4 +1,7 @@
+﻿using Core3._1.Authorization.Handler;
+using Core3._1.Authorization.Requirement;
 using Core3._1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,15 +12,45 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredLength = 6;
+        });
+
         // Add services to the container.
         builder.Services.AddControllersWithViews();
         string connectionString = builder.Configuration.GetConnectionString("default");
         builder.Services.AddDbContext<AppDBContext>(c => c.UseSqlServer(connectionString));
+
         builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDBContext>();
 
         builder.Services.AddAuthorization(options =>
         {
-            options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+            options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("Employee", "5", "6", "4"));
+            options.AddPolicy("DevUser",
+                    policy => policy.RequireAssertion(
+                        context => context.User.HasClaim(claim => claim.Type == "Dev")
+                            || context.User.HasClaim(claim => claim.Type == "IT")
+                            || context.User.IsInRole("User")));
+        });
+
+
+        builder.Services.AddSingleton<IAuthorizationHandler, IsAccountNotDisabledHandler>();
+        builder.Services.AddSingleton<IAuthorizationHandler, IsEmployeeHandler>();
+        builder.Services.AddSingleton<IAuthorizationHandler, IsVIPCustomerHandler>();
+
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("canManageProduct",
+                policyBuilder =>
+                    policyBuilder.AddRequirements(
+                        new IsAccountEnabledRequirement(),
+                        new IsAllowedToManageProductRequirement()
+                    ));
         });
 
         var app = builder.Build();

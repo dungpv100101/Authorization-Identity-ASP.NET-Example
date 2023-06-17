@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace Core3._1.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class UserController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -18,7 +18,32 @@ namespace Core3._1.Controllers
             _roleManager = roleManager;
         }
 
+        public async Task<IActionResult> ViewRolesAndClaims()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var claims = await _userManager.GetClaimsAsync(user);
+
+            var model = new ViewRolesAndClaimsViewModel
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                Roles = roles,
+                Claims = claims
+            };
+
+            return View(model);
+        }
+
+
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AssignRole()
         {
             var users = _userManager.Users.ToList();
@@ -32,6 +57,7 @@ namespace Core3._1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AssignRole(AssignRoleViewModel model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId);
@@ -66,6 +92,7 @@ namespace Core3._1.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddClaim()
         {
             var users = _userManager.Users.ToList();
@@ -78,6 +105,7 @@ namespace Core3._1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddClaim(AddClaimViewModel model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId);
